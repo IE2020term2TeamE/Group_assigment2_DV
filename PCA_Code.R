@@ -3,18 +3,20 @@ library(factoextra)
 
 df = read.csv('WHO Data for PCA.csv')
 
+str(df)
 
-
-str(df$X)
+str(df$Location)
 
 
 #library(tidyverse)
 #df %>% remove_rownames %>% column_to_rownames(var='X')
 str(df$X)
 
-df$X = as.numeric(as.factor(df$X))
+df$Location = as.numeric(as.factor(df$Location))
 
-#who.pca <- as.data.frame(prcomp(df, scale= TRUE)$X)
+who.pca <- as.data.frame(prcomp(df, scale= TRUE)$x)
+
+who.pca
 
 who.pca <- (prcomp(df, scale= TRUE))
 
@@ -31,7 +33,7 @@ df2 = summary(who.pca)$importance
 
 class(df2)
 
-write.csv(df2,"who_PCA.csv")
+write.csv(who.pca,"who_PCA.csv")
 
 # fviz_pca_ind(who.pca,
 #              col.ind = "cos2", # Color by the quality of representation
